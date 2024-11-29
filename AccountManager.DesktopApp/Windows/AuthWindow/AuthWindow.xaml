@@ -10,6 +10,19 @@
         <ResourceDictionary Source="AuthWindowStyles.xaml"/>
     </Window.Resources>
     
+    <Window.InputBindings>
+        <KeyBinding Modifiers="Alt" Key="Enter"
+                    Command="Open"/>
+        <KeyBinding Gesture="Alt+Ctrl+Enter"
+                    Command="Open"/>
+    </Window.InputBindings>
+    
+    <Window.CommandBindings>
+        <CommandBinding Command="Open"
+                        Executed="CommandOpen_OnExecuted"
+                        CanExecute="CommandOpen_OnCanExecute"/>
+    </Window.CommandBindings>
+    
     <StackPanel Orientation="Vertical">
         <TextBlock x:Name="Title"
                    Text="Авторизация"
@@ -24,7 +37,8 @@
                 </Grid.ColumnDefinitions>
                 
                 <Label x:Name="LabelInputLogin"
-                       Content="Логин"
+                       Content="_Логин"
+                       Target="{Binding ElementName=InputLogin}"
                        Style="{StaticResource StyleLabel}"
                        Grid.Column="0"/>
                 <TextBox x:Name="InputLogin"
@@ -39,7 +53,8 @@
                 </Grid.ColumnDefinitions>
                 
                 <Label x:Name="LabelInputPassword"
-                       Content="Пароль"
+                       Content="_Пароль"
+                       Target="{Binding ElementName=InputPassword}"
                        Style="{StaticResource StyleLabel}"
                        Grid.Column="0"/>
                 <TextBox x:Name="InputPassword"
@@ -51,6 +66,7 @@
                         HorizontalAlignment="Center">
                 <Button x:Name="ButtonLogIn"
                         Content="Войти"
+                        Command="Open"
                         Style="{StaticResource StyleButtonLogIn}"/>
                 <Button x:Name="ButtonCancel"
                         Content="Отмена"
