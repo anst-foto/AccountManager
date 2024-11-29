@@ -4,7 +4,11 @@
         
         Title="AuthWindow" 
         
-        Height="450" Width="800">
+        Height="300" Width="500"
+        MinWidth="500" MaxWidth="800"
+        
+        WindowStartupLocation="CenterScreen"
+        WindowState="Normal" WindowStyle="SingleBorderWindow" ResizeMode="CanResize">
     
     <Window.Resources>
         <ResourceDictionary Source="AuthWindowStyles.xaml"/>
@@ -15,6 +19,9 @@
                     Command="Open"/>
         <KeyBinding Gesture="Alt+Ctrl+Enter"
                     Command="Open"/>
+        
+        <MouseBinding MouseAction="RightClick"
+                      Command="Open"/>
     </Window.InputBindings>
     
     <Window.CommandBindings>

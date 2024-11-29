@@ -12,7 +12,7 @@ public partial class AuthWindow : Window
 
     private void CommandOpen_OnExecuted(object sender, ExecutedRoutedEventArgs e)
     {
-        MessageBox.Show("Вы успешно авторизовались!");
+        MessageBox.Show(this, "Вы успешно авторизовались!");
     }
 
     private void CommandOpen_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
