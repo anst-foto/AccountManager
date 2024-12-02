@@ -49,6 +49,7 @@
                        Style="{StaticResource StyleLabel}"
                        Grid.Column="0"/>
                 <TextBox x:Name="InputLogin"
+                         ToolTip="Введите ваш логин"
                          Style="{StaticResource StyleInput}"
                          Grid.Column="1"/>
             </Grid>
@@ -64,9 +65,39 @@
                        Target="{Binding ElementName=InputPassword}"
                        Style="{StaticResource StyleLabel}"
                        Grid.Column="0"/>
-                <TextBox x:Name="InputPassword"
-                         Style="{StaticResource StyleInput}"
-                         Grid.Column="1"/>
+                
+                <Grid Grid.Column="1">
+                    <TextBox  x:Name="InputPassword"
+                              Style="{StaticResource StyleInput}" />
+                    <TextBlock IsHitTestVisible="False" 
+                               Text="Введите пароль" 
+                               
+                               VerticalAlignment="Center" 
+                               HorizontalAlignment="Left" 
+                               
+                               Margin="10,0,0,0" 
+                               
+                               Foreground="DarkGray">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Style.Setters>
+                                    <Setter Property="Margin" Value="10"/>
+                                    <Setter Property="Padding" Value="5"/>
+            
+                                    <Setter Property="FontSize" Value="14"/>
+                                    
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </Style.Setters>
+                                
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=InputPassword, Path=Text}" Value="">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </Grid>
             </Grid>
             
             <StackPanel Orientation="Horizontal"

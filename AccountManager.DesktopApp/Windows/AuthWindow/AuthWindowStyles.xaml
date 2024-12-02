@@ -25,24 +25,35 @@
     <!-- <BUTTON> -->
     <Style x:Key="StyleButtonDefault" TargetType="{x:Type Button}"
            BasedOn="{StaticResource StyleDefault}">
-        <Setter Property="Foreground" Value="White"/>
+        <Style.Setters>
+            <Setter Property="Foreground" Value="White"/>
         
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Border CornerRadius="5"
-                            BorderThickness="1"
-                            BorderBrush="Black"
-                            Background="{TemplateBinding Background}">
-                        <ContentPresenter Content="{TemplateBinding Content}"
-                                          Margin="{TemplateBinding Padding}"
-                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          TextElement.FontWeight="{TemplateBinding FontWeight}"/>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="5"
+                                BorderThickness="1"
+                                BorderBrush="Black"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter Content="{TemplateBinding Content}"
+                                              Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              TextElement.FontWeight="{TemplateBinding FontWeight}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+        
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Trigger.Setters>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Setter Property="FontWeight" Value="Black"/>
+                </Trigger.Setters>
+            </Trigger>
+        </Style.Triggers>
     </Style>
     <Style x:Key="StyleButtonLogIn" TargetType="{x:Type Button}"
            BasedOn="{StaticResource StyleButtonDefault}">
@@ -55,6 +66,12 @@
     <Style x:Key="StyleButtonResetPassword" TargetType="{x:Type Button}"
            BasedOn="{StaticResource StyleButtonDefault}">
         <Setter Property="Background" Value="Orange"/>
+        
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="ToolTip" Value="Открытие формы для восстановления пароля"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
     <!-- </BUTTON> -->
 </ResourceDictionary>
