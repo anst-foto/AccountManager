@@ -5,6 +5,8 @@ namespace AccountManager.DesktopApp.Windows.AuthWindow;
 
 public partial class AuthWindow : Window
 {
+    //public string InputLogin { get; set; }
+    
     public AuthWindow()
     {
         InitializeComponent();
@@ -12,18 +14,20 @@ public partial class AuthWindow : Window
 
     private void CommandOpen_OnExecuted(object sender, ExecutedRoutedEventArgs e)
     {
-        MessageBox.Show(this, "Вы успешно авторизовались!");
+        MessageBox.Show(this, $"{InputLogin.InputText} {InputPassword.InputText}");
     }
 
     private void CommandOpen_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
     {
-        if (!string.IsNullOrWhiteSpace(InputLogin.Text) && !string.IsNullOrWhiteSpace(InputPassword.Text))
+        /*if (!string.IsNullOrWhiteSpace(InputLogin) && !string.IsNullOrWhiteSpace(InputPassword.InputText))
         {
             e.CanExecute = true;
         }
         else
         {
             e.CanExecute = false;
-        }
+        }*/
+        
+        e.CanExecute = true;
     }
 }

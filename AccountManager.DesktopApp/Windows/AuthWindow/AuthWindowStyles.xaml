@@ -11,17 +11,6 @@
     </Style>
     <!-- </DEFAULT> -->
     
-    <!-- <INPUT> -->
-    <Style x:Key="StyleLabel" TargetType="{x:Type Label}"
-           BasedOn="{StaticResource StyleDefault}">
-        <Setter Property="HorizontalContentAlignment" Value="Left"/>
-    </Style>
-    <Style x:Key="StyleInput" TargetType="{x:Type TextBox}"
-           BasedOn="{StaticResource StyleDefault}">
-        <Setter Property="HorizontalContentAlignment" Value="Right"/>
-    </Style>
-    <!-- </INPUT> -->
-    
     <!-- <BUTTON> -->
     <Style x:Key="StyleButtonDefault" TargetType="{x:Type Button}"
            BasedOn="{StaticResource StyleDefault}">
