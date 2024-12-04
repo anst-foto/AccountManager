@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace AccountManager.DesktopApp;
+namespace AccountManager.DesktopApp.Windows.MainWindow;
 
 public partial class MainWindow : Window
 {

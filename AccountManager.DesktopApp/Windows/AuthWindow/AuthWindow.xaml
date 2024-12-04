@@ -2,6 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:c="clr-namespace:AccountManager.DesktopApp.Components"
+        xmlns:vm="clr-namespace:AccountManager.DesktopApp.ViewModels"
         
         Title="AuthWindow" 
         
@@ -12,25 +13,23 @@
         WindowState="Normal" WindowStyle="SingleBorderWindow" ResizeMode="CanResize">
     <!--x:Name="Window"-->
     
+    <Window.DataContext>
+        <vm:AuthWindowViewModel/>
+    </Window.DataContext>
+    
     <Window.Resources>
         <ResourceDictionary Source="AuthWindowStyles.xaml"/>
     </Window.Resources>
     
     <Window.InputBindings>
         <KeyBinding Modifiers="Alt" Key="Enter"
-                    Command="Open"/>
+                    Command="{Binding CommandLogin}"/>
         <KeyBinding Gesture="Alt+Ctrl+Enter"
-                    Command="Open"/>
+                    Command="{Binding CommandLogin}"/>
         
         <MouseBinding MouseAction="RightClick"
-                      Command="Open"/>
+                      Command="{Binding CommandLogin}"/>
     </Window.InputBindings>
-    
-    <Window.CommandBindings>
-        <CommandBinding Command="Open"
-                        Executed="CommandOpen_OnExecuted"
-                        CanExecute="CommandOpen_OnCanExecute"/>
-    </Window.CommandBindings>
     
     <StackPanel Orientation="Vertical">
         <TextBlock x:Name="Title"
@@ -39,34 +38,41 @@
                    HorizontalAlignment="Center"/>
         
         <StackPanel Orientation="Vertical">
-            <!--<c:InputControl LabelText="Логин"
-                            InputText="{Binding ElementName=Window, Path=InputLogin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }"
-                            ToolTip="Введите логин"/>-->
-            <c:InputControl x:Name="InputLogin" 
-                            LabelText="Логин"
-                            ToolTip="Введите логин"/>
+            <c:InputControl LabelText="Логин"
+                            ToolTip="Введите логин"
+                            InputText="{Binding Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             
-            <c:InputControl x:Name="InputPassword" 
-                            LabelText="Пароль"
-                            ToolTip="Введите пароль"/>
+            <c:InputControl LabelText="Пароль"
+                            ToolTip="Введите пароль"
+                            InputText="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center">
                 <Button x:Name="ButtonLogIn"
                         Content="Войти"
-                        Command="Open"
+                        Command="{Binding CommandLogin}"
                         Style="{StaticResource StyleButtonLogIn}"/>
                 <Button x:Name="ButtonCancel"
                         Content="Отмена"
+                        Command="{Binding CommandCancel}"
                         Style="{StaticResource StyleButtonCancel}"/>
             </StackPanel>
             
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center">
-                <Button x:Name="ButtonResetPassword"
-                        Content="Восстановить пароль"
+                <Button Content="Восстановить пароль"
+                        Command="{Binding CommandRefreshPassword}"
                         Style="{StaticResource StyleButtonResetPassword}"/>
             </StackPanel>
         </StackPanel>
+        
+        <TextBlock>
+            <TextBlock.Text>
+                <MultiBinding StringFormat="{}Login: {0}; Password: {1}">
+                    <Binding Path="Login"/>
+                    <Binding Path="Password"/>
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
     </StackPanel>
 </Window>

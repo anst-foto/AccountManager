@@ -12,9 +12,9 @@ public partial class InputControl : UserControl
     static InputControl()
     {
         LabelTextProperty = DependencyProperty.Register(
-            nameof(LabelText),
-            typeof(string),
-            typeof(InputControl));
+            name: nameof(LabelText),
+            propertyType: typeof(string),
+            ownerType: typeof(InputControl));
         InputTextProperty = DependencyProperty.Register(
             nameof(InputText),
             typeof(string),
