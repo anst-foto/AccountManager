@@ -1,11 +1,10 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
+using AccountManager.DesktopApp.Models;
 
 namespace AccountManager.DesktopApp.ViewModels;
 
-public class AuthWindowViewModel : INotifyPropertyChanged
+public class AuthWindowViewModel : ViewModelBase
 {
     private string? _login;
     public string? Login
@@ -34,24 +33,32 @@ public class AuthWindowViewModel : INotifyPropertyChanged
             });
 
         CommandLogin = new LambdaCommand(
-            execute: _ => MessageBox.Show($"{Login} {Password}"),
+            execute: _ =>
+            {
+                var accounts = AccountService.GetAllAccounts();
+                var account = accounts?.SingleOrDefault(a => a.Login == Login);
+
+                if (account == null)
+                {
+                    MessageBox.Show("Нет такого пользователя!");
+                    return;
+                }
+
+                if (!account.IsActive)
+                {
+                    MessageBox.Show("Аккаунт не активен!");
+                    return;
+                }
+
+                if (Password != account.Password)
+                {
+                    MessageBox.Show("Неверный пароль!");
+                }
+                else
+                {
+                    MessageBox.Show("Вы успешно вошли!");
+                }
+            },
             canExecute: _ => !string.IsNullOrWhiteSpace(Login) && !string.IsNullOrWhiteSpace(Password));
-    }
-
-    public event PropertyChangedEventHandler? PropertyChanged;
-
-    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
-
-    protected bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
-    {
-        if (EqualityComparer<T>.Default.Equals(field, value)) return false;
-        
-        field = value;
-        OnPropertyChanged(propertyName);
-        
-        return true;
     }
 }

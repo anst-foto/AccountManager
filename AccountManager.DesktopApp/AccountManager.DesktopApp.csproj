@@ -16,4 +16,10 @@
       </Page>
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="accounts.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
