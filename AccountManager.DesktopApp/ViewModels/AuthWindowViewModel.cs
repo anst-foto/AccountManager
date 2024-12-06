@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using AccountManager.DesktopApp.Models;
+using AccountManager.DesktopApp.Windows.AccountProfileWindow;
 
 namespace AccountManager.DesktopApp.ViewModels;
 
@@ -33,7 +34,7 @@ public class AuthWindowViewModel : ViewModelBase
             });
 
         CommandLogin = new LambdaCommand(
-            execute: _ =>
+            execute: o =>
             {
                 var accounts = AccountService.GetAllAccounts();
                 var account = accounts?.SingleOrDefault(a => a.Login == Login);
@@ -57,6 +58,12 @@ public class AuthWindowViewModel : ViewModelBase
                 else
                 {
                     MessageBox.Show("Вы успешно вошли!");
+                    
+                    Application.Current.Resources["Account"] = account;
+                    
+                    new AccountProfileWindow().Show();
+                    
+                    (o as Window)?.Close();
                 }
             },
             canExecute: _ => !string.IsNullOrWhiteSpace(Login) && !string.IsNullOrWhiteSpace(Password));

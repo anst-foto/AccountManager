@@ -3,14 +3,19 @@
     "Id": "c8c73ec4-c462-4fd0-af4d-f8d917cdb4a5",
     "Login": "admin",
     "Password": "admin",
+    "FirstName": "Admin",
+    "LastName": "Admin",
     "Email": "admin@admin.com",
     "Role": 0,
-    "IsActive": true
+    "IsActive": true,
+    "PhotoPath": "D:\\Я.jpg"
   },
   {
     "Id": "1c825477-1276-4f81-9506-065149051b34",
     "Login": "user",
     "Password": "user",
+    "FirstName": "User",
+    "LastName": "User",
     "Email": "user@user.com",
     "Role": 1,
     "IsActive": true
@@ -19,6 +24,8 @@
     "Id": "b58041b0-8e1c-4c75-ac60-a19cb9dbcb17",
     "Login": "admin1",
     "Password": "admin1",
+    "FirstName": "Admin1",
+    "LastName": "Admin1",
     "Email": "admin@admin.com",
     "Role": 0,
     "IsActive": false

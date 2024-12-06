@@ -13,13 +13,14 @@
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
                 
-        <Label Content="{Binding Path=LabelText}"
+        <Label Content="{Binding LabelText}"
                Target="{Binding ElementName=Input}"
                Style="{StaticResource StyleLabel}"
                Grid.Column="0"/>
         <TextBox x:Name="Input"
-                 ToolTip="{Binding Path=ToolTipText}"
-                 Text="{Binding Path=InputText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 ToolTip="{Binding ToolTipText}"
+                 Text="{Binding InputText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 IsReadOnly="{Binding IsReadOnly}"
                  Style="{StaticResource StyleInput}"
                  Grid.Column="1"/>
     </Grid>

@@ -8,6 +8,7 @@ public partial class InputControl : UserControl
     public static readonly DependencyProperty LabelTextProperty;
     public static readonly DependencyProperty InputTextProperty;
     public static readonly DependencyProperty ToolTipTextProperty;
+    public static readonly DependencyProperty IsReadOnlyProperty;
 
     static InputControl()
     {
@@ -22,6 +23,10 @@ public partial class InputControl : UserControl
         ToolTipTextProperty = DependencyProperty.Register(
             nameof(ToolTipText),
             typeof(string),
+            typeof(InputControl));
+        IsReadOnlyProperty = DependencyProperty.Register(
+            nameof(IsReadOnly),
+            typeof(bool),
             typeof(InputControl));
     }
 
@@ -43,9 +48,11 @@ public partial class InputControl : UserControl
         set => SetValue(ToolTipTextProperty, value);
     }
 
-    /*public string LabelText { get; set; }
-    public string InputText { get; set; }
-    public string ToolTipText { get; set; }*/
+    public bool IsReadOnly
+    {
+        get => (bool)GetValue(IsReadOnlyProperty);
+        set => SetValue(IsReadOnlyProperty, value);
+    }
     
     public InputControl()
     {
